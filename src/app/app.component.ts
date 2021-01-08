@@ -1,95 +1,87 @@
-import { Component, OnInit,  VERSION } from '@angular/core';
+import { Component, OnInit, VERSION } from "@angular/core";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  selector: "my-app",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent  implements OnInit {
-  iscoursedisplay =  false ; isstudentdisplayed =  false;
- isCourseSelected = true ;
- coursearray  = [];
- courseName;
- studentList ;
- courseSelect ;
- studentName;
- studentDname = [] ;
- courseDname : Object ;
- selectedCourse :  any;
- disStudents: any;
- selectedStudentIndex : any
-  constructor() { }
+export class AppComponent implements OnInit {
+  iscoursedisplay = false;
+  isstudentdisplayed = false;
+  isCourseSelected = true;
+  coursearray = [];
+  courseName;
+  studentList;
+  courseSelect;
+  studentName;
+  studentDname = [];
+  courseDname: Object;
+  selectedCourse: any;
+  disStudents: any;
+  selectedStudentIndex: any;
+  constructor() {}
   // to show textbox of  addcourse
 
-  addcourse(){
-    this.iscoursedisplay = true
+  addcourse() {
+    this.iscoursedisplay = true;
   }
 
   //to show the textbox  of  add student
 
-  addstudent(){
-    this.isstudentdisplayed = true
+  addstudent() {
+    this.isstudentdisplayed = true;
   }
 
-//to get the selected coursename 
+  //to get the selected coursename
 
-  selectChangeCourse(courseSelect : any){
-    this.isCourseSelected = false
-    // console.log('empty array');
-    this.studentList = '';
-    // console.log('course selected');
-    this.selectedCourse = courseSelect
+  selectChangeCourse(courseSelect: any) {
+    this.isCourseSelected = false;
+    this.studentList = "";
+    this.selectedCourse = courseSelect;
     console.log(this.selectedCourse);
     console.log(this.coursearray);
-    let obj  = this.coursearray.find(x => x.course === this.selectedCourse);
-    // console.log('selected course details');
-    // console.log(obj);
+    let obj = this.coursearray.find(x => x.course === this.selectedCourse);
     this.selectedStudentIndex = this.coursearray.indexOf(obj);
-    // console.log('selected course index');
-    console.log(this.selectedStudentIndex)
-    this.studentDname = []
+    console.log(this.selectedStudentIndex);
+    this.studentDname = [];
     this.disStudents = this.coursearray[this.selectedStudentIndex].students;
-    // console.log(this.disStudents);
   }
 
-// hide course add area X 
+  // hide course add area X
 
-  chide(){
+  chide() {
     this.iscoursedisplay = false;
   }
 
-// hide student add area X
+  // hide student add area X
 
-  shide(){
+  shide() {
     this.isstudentdisplayed = false;
   }
 
-// add new course to the dropdown
+  // add new course to the dropdown
 
-  addcourselist(){
-    this.courseDname = { 
-      "course" : this.courseName,
-      "students" : []
-    }
+  addcourselist() {
+    this.courseDname = {
+      course: this.courseName,
+      students: []
+    };
     this.coursearray.push(this.courseDname);
     console.log(this.coursearray);
-    this.courseName = ' ';
+    this.courseName = " ";
     this.chide();
   }
-  
-// add new student to the dropdown
 
-  addstudentlist(){
+  // add new student to the dropdown
+
+  addstudentlist() {
     console.log(this.studentName);
-    this.coursearray[this.selectedStudentIndex].students.push(this.studentName)
+    this.coursearray[this.selectedStudentIndex].students.push(this.studentName);
     console.log(this.coursearray);
-    this.studentName = ' ';
+    this.studentName = " ";
     console.log(this.coursearray[this.selectedStudentIndex]);
     this.shide();
   }
 
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
